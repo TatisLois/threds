@@ -6,7 +6,7 @@
     "patch-package": "^6.4.7"
   },
   "workspaces": [
-    "packages/app",
+    "packages/common",
     "packages/expo",
     "packages/next"
   ],
@@ -16,6 +16,7 @@
     "build": "cd packages/next && yarn build",
     "deploy": "vercel --prod --no-clipboard",
     "postinstall": "patch-package",
+    "clear": "rm -rf node_modules; rm -rf packages/expo/node_modules; rm -rf packages/next/node_modules/",
     "localhost:twitter:oAuth": ""
   },
   "resolutions": {

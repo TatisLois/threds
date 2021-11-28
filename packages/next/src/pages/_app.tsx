@@ -1,19 +1,17 @@
+import '../styles/global.scss';
 
-import '../styles/global.scss'
+import 'raf/polyfill';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+import Head from 'next/head';
+import type { AppProps } from 'next/app';
+import { DripsyProvider } from 'dripsy';
 
-import 'raf/polyfill'
-// @ts-ignore
-global.setImmediate = requestAnimationFrame
-import 'setimmediate'
-
-import { SafeAreaProvider } from 'react-native-safe-area-context'
-import Head from 'next/head'
-import { AppProps } from 'next/app'
-import { DripsyProvider } from 'dripsy'
-
-import { theme } from '../../../common/theme'
+import { theme } from '../../../common/theme';
+import { Navigation } from '../../../common/navigation';
+import useAuthentication from 'common/authentication/hooks/useAuthentication';
 
 export default function App({ Component, pageProps }: AppProps) {
+  const { isAuthenticated } = useAuthentication();
   return (
     <>
       <Head>
@@ -27,9 +25,13 @@ export default function App({ Component, pageProps }: AppProps) {
       </Head>
       <DripsyProvider theme={theme}>
         <SafeAreaProvider>
-          <Component {...pageProps} />
+          {isAuthenticated ? (
+            <h1>Logged In</h1>
+          ) : (
+            <Navigation Component={Component} pageProps={pageProps} />
+          )}
         </SafeAreaProvider>
       </DripsyProvider>
     </>
-  )
+  );
 }
