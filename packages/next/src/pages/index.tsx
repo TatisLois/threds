@@ -1,7 +1,7 @@
-// import HomeNavigator from '../../../common/navigation/routes/home'
+import HomeNavigator from '../../../common/navigation/routes/home';
 
-// export default HomeNavigator
+export default HomeNavigator;
 
-export default function Test() {
-  return <div>Test</div>;
-}
+// export default function Test() {
+//   return <div>Test</div>;
+// }
